@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Mapel extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'nama',
+        'guru_id',
+    ];
+
+    public function guru()
+    {
+        return $this->belongsTo(Guru::class);
+    }
+    public function ujians()
+    {
+        return $this->hasMany(Ujian::class);
+    }
 }

@@ -16,7 +16,7 @@ class CreateJawabanSiswasTable extends Migration
         Schema::create('jawaban_siswas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('soal_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('siswa_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('jawaban');
             $table->timestamps();
         });

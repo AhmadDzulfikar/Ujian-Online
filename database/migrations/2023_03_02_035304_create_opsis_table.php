@@ -16,7 +16,7 @@ class CreateOpsisTable extends Migration
         Schema::create('opsis', function (Blueprint $table) {
             $table->id();
             $table->text('opsi');
-            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('ujian_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('is_correct');
             $table->string('urutan');
             $table->timestamps();

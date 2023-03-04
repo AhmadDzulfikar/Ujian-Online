@@ -17,7 +17,7 @@ class CreateTokensTable extends Migration
             $table->id();
             $table->foreignId('ujian_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('token',20);
-            $table->date('expired_date');
+            $table->time('expired_date');
             $table->timestamps();
         });
     }

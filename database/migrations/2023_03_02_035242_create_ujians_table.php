@@ -17,7 +17,7 @@ class CreateUjiansTable extends Migration
             $table->id();
             $table->string('nama',125);
             $table->foreignId('mapel_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->char('waktu_id',5);
+            $table->time('waktu_mulai');
             $table->char('alokasi_waktu',5);
             $table->date('tanggal');
             $table->timestamps();
