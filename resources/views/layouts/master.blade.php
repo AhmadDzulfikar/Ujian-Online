@@ -59,15 +59,7 @@
                         <a href="index.html">St</a>
                     </div>
                     <ul class="sidebar-menu">
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
                         {{-- @include('admin') --}}
                         {{-- @include('guru') --}}
                         {{-- @include('proktor') --}}
@@ -79,11 +71,11 @@
                 @yield('content')
                 {{-- <section class="section">
                     <div class="section-header">
-                       
+
                     </div>
 
                     <div class="section-body">
-                       
+
                     </div>
                 </section> --}}
             </div>

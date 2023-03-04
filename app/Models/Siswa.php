@@ -18,6 +18,14 @@ class Siswa extends Authenticatable
         'kelas_id'
     ];
 
+    protected $hidden = [
+        'password'
+    ];
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
+
     public function kelas()
     {
         return $this->belongsTo(Kelas::class);

@@ -40,9 +40,19 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
         $this->middleware('guest:admin')->except('logout');
         $this->middleware('guest:proktor')->except('logout');
+        $this->middleware('guest:guru')->except('logout');
+        $this->middleware('guest:siswa')->except('logout');
     }
 
 
+    public function username()
+    {
+        if (request()->input('email')) {
+            return 'email';
+        } else {
+            return 'nis';
+        }
+    }
 
     protected function validateLogin(Request $request)
     {
@@ -57,20 +67,17 @@ class LoginController extends Controller
         if (Auth::guard('proktor')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             return redirect()->intended('/proktor/dashboard');
         }
+        if (Auth::guard('guru')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+            return redirect()->intended('/guru/dashboard');
+        }
 
         return back()->withInput($request->only('email', 'remember'));
-
-
     }
 
-    protected function authenticated(Request $request, $user)
+    protected function login_siswa(Request $request)
     {
-        dd($user);
-        if (Auth::guard('admin')) {
-            return redirect('/admin/dashboard');
-        }
-        if (Auth::guard('proktor')) {
-            return redirect('/proktor/dashboard');
+        if ($this->username() == 'nis' && Auth::guard('siswa')->attempt(['nis' => $request->nis, 'password' => $request->password], $request->get('remember'))) {
+            return redirect('siswa/konfirmasi-ujian');
         }
     }
 }

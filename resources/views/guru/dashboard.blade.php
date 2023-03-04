@@ -10,5 +10,5 @@
         @csrf
     </form>
 
-    <h1>{{ Auth::guard('proktor')->user() }}</h1>
+    <h1>{{ Auth::guard('guru')->user() }}</h1>
 @endsection

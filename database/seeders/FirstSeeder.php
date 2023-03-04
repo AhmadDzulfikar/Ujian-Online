@@ -52,18 +52,21 @@ class FirstSeeder extends Seeder
         //GURU
         Guru::Create([
             'nip' => '192921812',
+            'email' => 'guru@gmail.com',
             'fullname' => 'GURUGURU',
             'username' => 'guru',
             'password' => bcrypt('password'),
         ]);
         Guru::Create([
             'nip' => '2190201',
+            'email' => 'guru2@gmail.com',
             'fullname' => 'GURUGURU2',
             'username' => 'guru2',
             'password' => bcrypt('password'),
         ]);
         Guru::Create([
             'nip' => '192921812',
+            'email' => 'guru3@gmail.com',
             'fullname' => 'GURUGURU3',
             'username' => 'guru3',
             'password' => bcrypt('password'),
@@ -105,21 +108,21 @@ class FirstSeeder extends Seeder
             'nis' => '10634',
             'fullname' => 'sasong sanjoyo',
             'username' => 'sasong',
-            'password' => 'password',
+            'password' => bcrypt('password'),
             'kelas_id' => 1
         ]);
         Siswa::Create([
             'nis' => '10673',
             'fullname' => 'Dap dancugi',
             'username' => 'dap',
-            'password' => 'password',
+            'password' => bcrypt('password'),
             'kelas_id' => 2
         ]);
         Siswa::Create([
             'nis' => '10687',
             'fullname' => 'Hadni Phastura',
             'username' => 'hadni',
-            'password' => 'password',
+            'password' => bcrypt('password'),
             'kelas_id' => 3
         ]);
 
@@ -160,7 +163,7 @@ class FirstSeeder extends Seeder
             'tanggal' => '2023-02-07'
         ]);
 
-        //TOKEN 
+        //TOKEN
         Token::Create([
             'ujian_id' => 1,
             'token' => 'FWGGSH',
