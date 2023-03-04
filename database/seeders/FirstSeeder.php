@@ -15,6 +15,7 @@ use App\Models\Siswa;
 use App\Models\Soal;
 use App\Models\Token;
 use App\Models\Ujian;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class FirstSeeder extends Seeder
@@ -27,20 +28,25 @@ class FirstSeeder extends Seeder
     public function run()
     {
         //ADMIN
+        User::create([
+            'email' => 'user@gmail.com',
+            'password' => bcrypt('password'),
+            'name' => 'user'
+        ]);
         Admin::Create([
             'email' => 'admin@gmail.com',
             'username' => 'admin',
-            'password' => 'password',
+            'password' => bcrypt('password'),
         ]);
         Admin::Create([
             'email' => 'admin2@gmail.com',
             'username' => 'admin2',
-            'password' => 'password',
+            'password' => bcrypt('password'),
         ]);
         Admin::Create([
             'email' => 'admin3@gmail.com',
             'username' => 'admin3',
-            'password' => 'password',
+            'password' => bcrypt('password'),
         ]);
 
         //GURU
@@ -48,19 +54,19 @@ class FirstSeeder extends Seeder
             'nip' => '192921812',
             'fullname' => 'GURUGURU',
             'username' => 'guru',
-            'password' => 'password',
+            'password' => bcrypt('password'),
         ]);
         Guru::Create([
             'nip' => '2190201',
             'fullname' => 'GURUGURU2',
             'username' => 'guru2',
-            'password' => 'password',
+            'password' => bcrypt('password'),
         ]);
         Guru::Create([
             'nip' => '192921812',
             'fullname' => 'GURUGURU3',
             'username' => 'guru3',
-            'password' => 'password',
+            'password' => bcrypt('password'),
         ]);
 
         //PROKTOKTOR
@@ -68,19 +74,19 @@ class FirstSeeder extends Seeder
             'email' => 'proktor@gmail.com',
             'fullname' => 'proktor1',
             'username' => 'proktor1',
-            'password' => 'password',
+            'password' => bcrypt('password'),
         ]);
         Proktor::Create([
             'email' => 'proktor2@gmail.com',
             'fullname' => 'proktor2',
             'username' => 'proktor2',
-            'password' => 'password',
+            'password' => bcrypt('password'),
         ]);
         Proktor::Create([
             'email' => 'proktor3@gmail.com',
             'fullname' => 'proktor3',
             'username' => 'proktor3',
-            'password' => 'password',
+            'password' => bcrypt('password'),
         ]);
 
         //KELAS

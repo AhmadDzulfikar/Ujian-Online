@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -36,5 +38,39 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $this->middleware('guest:admin')->except('logout');
+        $this->middleware('guest:proktor')->except('logout');
+    }
+
+
+
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+            return redirect()->intended('/admin/dashboard');
+        }
+        if (Auth::guard('proktor')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+            return redirect()->intended('/proktor/dashboard');
+        }
+
+        return back()->withInput($request->only('email', 'remember'));
+
+
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        dd($user);
+        if (Auth::guard('admin')) {
+            return redirect('/admin/dashboard');
+        }
+        if (Auth::guard('proktor')) {
+            return redirect('/proktor/dashboard');
+        }
     }
 }
