@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 @section('content')
     <a class="dropdown-item" href="{{ route('logout') }}"
         onclick="event.preventDefault();
@@ -9,6 +9,5 @@
     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
         @csrf
     </form>
-
     <h1>{{ Auth::guard('admin')->user() }}</h1>
 @endsection

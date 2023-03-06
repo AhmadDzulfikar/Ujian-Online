@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 @section('content')
     <a class="dropdown-item" href="{{ route('logout') }}"
         onclick="event.preventDefault();

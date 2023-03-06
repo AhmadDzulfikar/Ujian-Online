@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layouts.master');
+    return view('auth.login');
 });
 
 Route::get('login-siswa', function () {
@@ -24,10 +24,19 @@ Route::get('login-siswa', function () {
 })->name('siswa.login-siswa');
 Route::post('post-login-siswa', [LoginController::class, 'login_siswa'])->name('post.login-siswa');
 
-Route::middleware(['auth:admin'])->group(function () {
-    Route::get('/admin/dashboard', function () {
+Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
+
+    Route::controller(Gurucontroller::class)
+    ->prefix('guru')
+    ->group(function () { 
+        Route::get('/','index')->name('admin.guru');
+        Route::post('/store','store')->name('admin.store.guru');
+        Route::put('/update/{id}','update')->name('admin.update.guru');
+        Route::delete('/delete/{id}','destroy')->name('admin.delete.guru');
+    });
 });
 
 Route::middleware(['auth:proktor'])->group(function () {

@@ -59,10 +59,17 @@
                         <a href="index.html">St</a>
                     </div>
                     <ul class="sidebar-menu">
+                        @if (Auth::guard('admin')->check())
+                            @include('sidebar.admin')
+                        @endif
 
-                        {{-- @include('admin') --}}
-                        {{-- @include('guru') --}}
-                        {{-- @include('proktor') --}}
+                        @if (Auth::guard('guru')->check())
+                            @include('sidebar.guru')
+                        @endif
+
+                        @if (Auth::guard('proktor')->check())
+                            @include('sidebar.proktor')
+                        @endif
                 </aside>
             </div>
 
