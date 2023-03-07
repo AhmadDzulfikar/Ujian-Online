@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,28 +15,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('auth.login');
 });
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('login-siswa', function () {
     return view('auth.login-siswa');
 })->name('siswa.login-siswa');
-Route::post('post-login-siswa', [LoginController::class, 'login_siswa'])->name('post.login-siswa');
+Route::post('post-login-siswa', [App\Http\Controllers\Auth\LoginController::class, 'login_siswa'])->name('post.login-siswa');
 
 Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+    Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
 
-    Route::controller(Gurucontroller::class)
-    ->prefix('guru')
-    ->group(function () { 
-        Route::get('/','index')->name('admin.guru');
-        Route::post('/store','store')->name('admin.store.guru');
-        Route::put('/update/{id}','update')->name('admin.update.guru');
-        Route::delete('/delete/{id}','destroy')->name('admin.delete.guru');
-    });
+    Route::controller(App\Http\Controllers\Admin\GuruController::class)
+        ->prefix('guru')
+        ->group(function () {
+            Route::get('/', 'index')->name('admin.guru');
+            Route::post('/store', 'store')->name('admin.store.guru');
+            Route::put('/update/{id}', 'update')->name('admin.update.guru');
+            Route::delete('/delete/{id}', 'destroy')->name('admin.delete.guru');
+        });
+
+    Route::controller(App\Http\Controllers\Admin\MapelController::class)
+        ->prefix('mapel')
+        ->group(function () {
+            Route::get('/', 'index')->name('admin.mapel');
+            Route::post('/store', 'store')->name('admin.store.mapel');
+            Route::put('/update/{id}', 'update')->name('admin.update.mapel');
+            Route::delete('/delete/{id}', 'destroy')->name('admin.delete.mapel');
+        });
 });
 
 Route::middleware(['auth:proktor'])->group(function () {

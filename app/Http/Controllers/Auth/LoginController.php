@@ -7,6 +7,8 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 
 class LoginController extends Controller
 {
@@ -30,6 +32,11 @@ class LoginController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    public function redirectTo()
+    {
+        return Session::get('backUrl') ? Session::get('backUrl') :   $this->redirectTo;
+    }
+
     /**
      * Create a new controller instance.
      *
@@ -42,6 +49,7 @@ class LoginController extends Controller
         $this->middleware('guest:proktor')->except('logout');
         $this->middleware('guest:guru')->except('logout');
         $this->middleware('guest:siswa')->except('logout');
+        Session::put('backUrl', URL::previous());
     }
 
 

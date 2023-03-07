@@ -11,9 +11,9 @@ class GuruController extends Controller
 {
     public function index()
     {
-        $guru = Guru::all();
-    
-        return view('admin.guru.index', compact('guru'));
+        $gurus = Guru::all();
+
+        return view('admin.guru.index', compact('gurus'));
     }
 
     public function store(Request $request)
