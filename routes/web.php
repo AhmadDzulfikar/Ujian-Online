@@ -86,13 +86,16 @@ Route::middleware(['auth:proktor'])->group(function () {
     })->name('proktor.dashboard');
 });
 
-Route::middleware(['auth:guru'])->group(function () {
-    Route::get('/guru/dashboard', function () {
+Route::middleware(['auth:guru'])->prefix('guru')->group(function () {
+    Route::get('/dashboard', function () {
         return view('guru.dashboard');
     })->name('guru.dashboard');
-    Route::get('/guru/mapel', function () {
-        return view('guru.mapel');
-    })->name('guru.mapel');
+    Route::get('/soal', function () {
+        return view('guru.soal');
+    })->name('guru.soal');
+    Route::get('/soal/detail', function () {
+        return view('guru.detail');
+    })->name('guru.detail');
 });
 
 Route::middleware(['auth:siswa'])->group(function () {

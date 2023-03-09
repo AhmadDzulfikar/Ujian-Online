@@ -14,21 +14,12 @@
         <span>Dashboard</span>
     </a>
 </li>
-<li class="{{ request()->is('guru/mapel') ? 'active' : '' }}">
-    <a class="nav-link" href="{{ route('guru.mapel') }}">
-        <i class="far fa-square"></i> 
-        <span>Data Mapel</span>
-    </a>
-</li>
-<li>
-    <a class="nav-link" href="blank.html">
-        <i class="far fa-square"></i> 
-        <span>Data Ujian</span>
-    </a>
-</li>
-<li>
-    <a class="nav-link" href="blank.html">
-        <i class="far fa-square"></i> 
+
+<li class="menu-header">MASTER DATA</li>
+
+<li class="{{ request()->is('guru/soal') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('guru.soal') }}">
+        <i class="fas fa-columns"></i> 
         <span>Input Soal</span>
     </a>
 </li>
@@ -44,7 +35,7 @@
                                                      document.getElementById('logout-form').submit();">
         <i class="far fa-square"></i> 
 
-        {{ __('Logout') }}
+        <span>Logout</span>
     </a>
 
     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
