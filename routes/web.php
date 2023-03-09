@@ -21,7 +21,7 @@ Route::get('/login', function () {
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('login-siswa', function () {
-    return view('auth.login-siswa');
+    return view('auth.siswa');
 })->name('siswa.login-siswa');
 Route::post('post-login-siswa', [App\Http\Controllers\Auth\LoginController::class, 'login_siswa'])->name('post.login-siswa');
 
