@@ -2,17 +2,17 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Tambah Guru</h5>
+                <h5 class="modal-title">Tambah Siswa</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('admin.store.guru') }}" method="POST">
+                <form action="{{ route('admin.store.siswa') }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <label class="font-weight-bold" for="">NIP</label>
-                        <input required type="text" placeholder="NIP" name="nip" id="" class="form-control">
+                        <label class="font-weight-bold" for="">NIS</label>
+                        <input required type="text" placeholder="NIS" name="nis" id="" class="form-control">
                     </div>
                     <div class="mb-3">
                         <label class="font-weight-bold" for="">Nama Lengkap</label>
@@ -25,8 +25,15 @@
                             class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label class="font-weight-bold" for="">Email</label>
-                        <input required type="text" placeholder="Email" name="email" id="" class="form-control">
+                        <label for="formGroupExampleInput" class="form-label">Kelas</label>
+                        <select name="kelas_id" id="" class="form-control">
+
+                            <option>Pilih Opsi</option>
+
+                            @foreach ($kelas as $p)
+                                <option value="{{ $p->id }}">{{ $p->nama }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label class="font-weight-bold" for="">Password</label>
@@ -42,7 +49,7 @@
     </div>
 </div>
 
-@foreach ($gurus as $guru)
+{{-- @foreach ($gurus as $guru)
     <div class="modal fade" tabindex="-1" role="dialog" id="edit{{ $guru->id }}">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -109,4 +116,4 @@
             </div>
         </div>
     </div>
-@endforeach
+@endforeach --}}

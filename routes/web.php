@@ -37,6 +37,15 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
             Route::delete('/delete/{id}', 'destroy')->name('admin.delete.guru');
         });
 
+        Route::controller(App\Http\Controllers\Admin\SiswaController::class)
+        ->prefix('siswa')
+        ->group(function () {
+            Route::get('/', 'index')->name('admin.siswa');
+            Route::post('/store', 'store')->name('admin.store.siswa');
+            Route::put('/update/{id}', 'update')->name('admin.update.siswa');
+            Route::delete('/delete/{id}', 'destroy')->name('admin.delete.siswa');
+        });
+
     Route::controller(App\Http\Controllers\Admin\MapelController::class)
         ->prefix('mapel')
         ->group(function () {
@@ -44,6 +53,30 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
             Route::post('/store', 'store')->name('admin.store.mapel');
             Route::put('/update/{id}', 'update')->name('admin.update.mapel');
             Route::delete('/delete/{id}', 'destroy')->name('admin.delete.mapel');
+        });
+
+        Route::controller(App\Http\Controllers\Admin\KelasController::class)
+        ->prefix('kelas')
+        ->group(function () {
+            Route::get('/', 'index')->name('admin.kelas');
+            Route::post('/store', 'store')->name('admin.store.kelas');
+            Route::put('/update/{id}', 'update')->name('admin.update.kelas');
+            Route::delete('/delete/{id}', 'destroy')->name('admin.delete.kelas');
+        });
+
+        Route::controller(App\Http\Controllers\Admin\UjianController::class)
+        ->prefix('ujian')
+        ->group(function () {
+            Route::get('/', 'index')->name('admin.ujian');
+            Route::post('/store', 'store')->name('admin.store.ujian');
+            Route::put('/update/{id}', 'update')->name('admin.update.ujian');
+            Route::delete('/delete/{id}', 'destroy')->name('admin.delete.ujian');
+        });
+        Route::controller(App\Http\Controllers\Admin\GenerateTokenController::class)
+        ->prefix('generate-token')
+        ->group(function () {
+            Route::get('/', 'index')->name('admin.generate-token');
+            Route::post('/store', 'generate_token_ujian')->name('admin.generate-token-ujian');
         });
 });
 

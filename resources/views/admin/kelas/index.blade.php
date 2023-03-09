@@ -1,11 +1,10 @@
 @extends('layouts.master')
 
-
 @section('content')
     <section class="section">
         <div class="section-header">
             <h1>
-                Data Guru
+                Data Kelas
             </h1>
         </div>
 
@@ -23,28 +22,24 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">
-                                        id
+                                        #
                                     </th>
                                     <th>Nama</th>
-                                    <th>NIP</th>
-                                    <th>Email</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($gurus as $guru)
+                                @foreach ($kelas as $k)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $guru->fullname }}</td>
-                                        <td>{{ $guru->nip }}</td>
-                                        <td>{{ $guru->email }}</td>
+                                        <td>{{ $k->nama }}</td>
                                         <td>
                                             <a href="" class="btn btn-success" data-toggle="modal"
-                                                data-target="#edit{{ $guru->id }}">
+                                                data-target="#edit{{ $k->id }}">
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                             <a href="" class="btn btn-danger" data-toggle="modal"
-                                                data-target="#hapus{{ $guru->id }}">
+                                                data-target="#hapus{{ $k->id }}">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </td>
@@ -57,5 +52,5 @@
             </div>
         </div>
     </section>
-    @include('admin.guru.forms')
+    @include('admin.kelas.forms')
 @endsection

@@ -13,9 +13,32 @@
     </a>
 </li>
 
+<li class="{{ request()->is('admin/siswa') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('admin.siswa') }}">
+        <i class="far fa-square"></i>
+        <span>Siswa</span>
+    </a>
+</li>
+
 <li class="{{ request()->is('admin/mapel') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('admin.mapel') }}">
         <i class="far fa-square"></i>
         <span>Mapel</span>
     </a>
 </li>
+
+<li class="{{ request()->is('admin/kelas') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('admin.kelas') }}">
+        <i class="far fa-square"></i>
+        <span>Kelas</span>
+    </a>
+</li>
+
+<li class="menu-header">Starter</li>
+<li class="{{ request()->is('admin/ujian') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('admin.ujian') }}">
+        <i class="far fa-square"></i>
+        <span>Ujian</span>
+    </a>
+</li>
+
