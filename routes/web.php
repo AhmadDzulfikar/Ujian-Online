@@ -90,6 +90,9 @@ Route::middleware(['auth:guru'])->group(function () {
     Route::get('/guru/dashboard', function () {
         return view('guru.dashboard');
     })->name('guru.dashboard');
+    Route::get('/guru/mapel', function () {
+        return view('guru.mapel');
+    })->name('guru.mapel');
 });
 
 Route::middleware(['auth:siswa'])->group(function () {
