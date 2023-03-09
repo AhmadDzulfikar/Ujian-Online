@@ -5,7 +5,7 @@
     <section class="section">
         <div class="section-header">
             <h1>
-                Data Guru
+                Data Siswa
             </h1>
         </div>
 
@@ -25,26 +25,26 @@
                                     <th class="text-center">
                                         id
                                     </th>
+                                    <th>NIS</th>
                                     <th>Nama</th>
-                                    <th>NIP</th>
-                                    <th>Email</th>
+                                    <th>Kelas</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($gurus as $guru)
+                                @foreach ($siswas as $siswa)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $guru->fullname }}</td>
-                                        <td>{{ $guru->nip }}</td>
-                                        <td>{{ $guru->email }}</td>
+                                        <td>{{ $siswa->nis }}</td>
+                                        <td>{{ $siswa->fullname }}</td>
+                                        <td>{{ $siswa->kelas->nama }}</td>
                                         <td>
                                             <a href="" class="btn btn-success" data-toggle="modal"
-                                                data-target="#edit{{ $guru->id }}">
+                                                data-target="#edit{{ $siswa->id }}">
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                             <a href="" class="btn btn-danger" data-toggle="modal"
-                                                data-target="#hapus{{ $guru->id }}">
+                                                data-target="#hapus{{ $siswa->id }}">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </td>
@@ -57,5 +57,5 @@
             </div>
         </div>
     </section>
-    @include('admin.guru.forms')
+    @include('admin.siswa.forms')
 @endsection
