@@ -15,7 +15,7 @@
                         <input required type="text" placeholder="NIS" name="nis" id="" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label class="font-weight-bold" for="">Nama Lengkap</label>
+                        <label class="font-weight-bold" for="">Nama Lengkaps</label>
                         <input required type="text" placeholder="Nama Lengkap" name="fullname" id=""
                             class="form-control">
                     </div>
@@ -49,39 +49,49 @@
     </div>
 </div>
 
-{{-- @foreach ($gurus as $guru)
-    <div class="modal fade" tabindex="-1" role="dialog" id="edit{{ $guru->id }}">
+@foreach ($siswas as $siswa)
+    <div class="modal fade" tabindex="-1" role="dialog" id="edit{{ $siswa->id }}">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit Guru</h5>
+                    <h5 class="modal-title">Edit Siswa</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('admin.update.guru', $guru->id) }}" method="POST">
+                    <form action="{{ route('admin.update.siswa', $siswa->id) }}" method="POST">
                         @csrf
                         @method('put')
                         <div class="mb-3">
-                            <label class="font-weight-bold" for="">NIP</label>
-                            <input required value="{{ $guru->nip }}" type="text" placeholder="NIP" name="nip"
+                            <label class="font-weight-bold" for="">NIS</label>
+                            <input required value="{{ $siswa->nis }}" type="text" placeholder="NIS" name="nis"
                                 id="" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label class="font-weight-bold" for="">Nama Lengkap</label>
-                            <input required value="{{ $guru->fullname }}" type="text" placeholder="Nama Lengkap"
+                            <input required value="{{ $siswa->fullname }}" type="text" placeholder="Nama Lengkap"
                                 name="fullname" id="" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label class="font-weight-bold" for="">Nama Panggilan</label>
-                            <input required value="{{ $guru->username }}" type="text" placeholder="Nama Panggilan"
+                            <input required value="{{ $siswa->username }}" type="text" placeholder="Nama Panggilan"
                                 name="username" id="" class="form-control">
                         </div>
                         <div class="mb-3">
-                            <label class="font-weight-bold" for="">Email</label>
-                            <input required value="{{ $guru->email }}" type="text" placeholder="Email" name="email"
-                                id="" class="form-control">
+                            <label for="formGroupExampleInput" class="form-label">Kelas</label>
+                            <select name="kelas_id" id="" class="form-control">
+
+                                @foreach ($kelas as $k)
+                                    <option value="{{ $k->id }}">{{ $k->nama }}</option>
+                                @endforeach
+
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="font-weight-bold" for="">Password</label>
+                            <input required type="password" placeholder="Password" name="password" id=""
+                                class="form-control">
                         </div>
                 </div>
                 <div class="modal-footer bg-whitesmoke br">
@@ -93,12 +103,12 @@
     </div>
 @endforeach
 
-@foreach ($gurus as $guru)
-    <div class="modal fade" tabindex="-1" role="dialog" id="hapus{{ $guru->id }}">
+@foreach ($siswas as $siswa)
+    <div class="modal fade" tabindex="-1" role="dialog" id="hapus{{ $siswa->id }}">
         <div class="modal-dialog " role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Hapus Guru</h5>
+                    <h5 class="modal-title">Hapus Siswa</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -107,7 +117,7 @@
                     Apakah Anda Yakin Ingin Menghapus Data Ini?
                 </div>
                 <div class="modal-footer bg-whitesmoke br">
-                    <form action="{{ route('admin.delete.guru', $guru->id) }}" method="POST">
+                    <form action="{{ route('admin.delete.siswa', $siswa->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Hapus</button>
@@ -116,4 +126,4 @@
             </div>
         </div>
     </div>
-@endforeach --}}
+@endforeach

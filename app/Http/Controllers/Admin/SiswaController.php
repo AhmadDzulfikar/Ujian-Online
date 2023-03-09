@@ -25,12 +25,34 @@ class SiswaController extends Controller
             'fullname' => $request->fullname,
             'username' => $request->username,
             'password' => Hash::make($request->password),
-            'kelas' => $request->kelas
+            'kelas_id' => $request->kelas_id
         ]);
 
         if ($admin) {
             return redirect()->back()->with('message', 'Berhasil Menambah Data Admin');
         }
         return redirect()->back()->with('message', 'Gagal Menambah Data Admin');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $siswa = Siswa::find($id);
+        $siswa->update($request->all());
+
+        if ($siswa) {
+            return redirect()->back()->with('status', 'success')->with('message', 'Berhasil Mengubah Data Siswa');
+        }
+        return redirect()->back()->with('status', 'danger')->with('message', 'gagal Mengubah Data Siswa');
+    }
+
+    public function destroy($id)
+    {
+        $siswa = Siswa::find($id);
+        $siswa->delete();
+
+        if ($siswa) {
+            return redirect()->back()->with('status', 'success')->with('message', 'Berhasil Menghapus Data Siswa');
+        }
+        return redirect()->back()->with('status', 'danger')->with('message', 'Gagal Menghapus Data Siswa');
     }
 }
