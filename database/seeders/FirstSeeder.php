@@ -31,7 +31,8 @@ class FirstSeeder extends Seeder
         User::create([
             'email' => 'user@gmail.com',
             'password' => bcrypt('password'),
-            'name' => 'user'
+            'name' => 'user',
+            'username' => 'user'
         ]);
         Admin::Create([
             'email' => 'admin@gmail.com',
@@ -107,21 +108,21 @@ class FirstSeeder extends Seeder
         Siswa::Create([
             'nis' => '10634',
             'fullname' => 'sasong sanjoyo',
-            'username' => 'sasong',
+            'username' => '10634',
             'password' => bcrypt('password'),
             'kelas_id' => 1
         ]);
         Siswa::Create([
             'nis' => '10673',
             'fullname' => 'Dap dancugi',
-            'username' => 'dap',
+            'username' => '10673',
             'password' => bcrypt('password'),
             'kelas_id' => 2
         ]);
         Siswa::Create([
             'nis' => '10687',
             'fullname' => 'Hadni Phastura',
-            'username' => 'hadni',
+            'username' => '10687',
             'password' => bcrypt('password'),
             'kelas_id' => 3
         ]);

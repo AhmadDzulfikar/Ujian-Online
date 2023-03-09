@@ -45,20 +45,20 @@
 
                         <div class="card card-primary">
                             <div class="card-header justify-content-center">
-                                <h4>Login Siswa</h4>
+                                <h4>Login</h4>
                             </div>
 
                             <div class="card-body">
-                                <form method="POST" action="{{ route('post.login-siswa') }}" class="needs-validation"
+                                <form method="POST" action="{{ route('login') }}" class="needs-validation"
                                     novalidate="">
                                     @csrf
 
                                     <div class="form-group">
-                                        <label for="nis">NIS</label>
-                                        <input id="nis" type="text" class="form-control" name="nis"
-                                            tabindex="1" value="{{ old('nis') }}" required autofocus>
+                                        <label for="nis">Username</label>
+                                        <input id="nis" type="text" class="form-control" name="username"
+                                            tabindex="1" value="{{ old('username') }}" required autofocus>
                                         <div class="invalid-feedback">
-                                            Masukkan NIS
+                                            Login
                                         </div>
                                     </div>
 

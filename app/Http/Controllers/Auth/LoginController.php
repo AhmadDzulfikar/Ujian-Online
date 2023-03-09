@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -55,11 +56,7 @@ class LoginController extends Controller
 
     public function username()
     {
-        if (request()->input('email')) {
-            return 'email';
-        } else {
-            return 'nis';
-        }
+        return 'username';
     }
 
     protected function validateLogin(Request $request)
@@ -69,23 +66,20 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
 
-        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+        if (Auth::guard('admin')->attempt(['username' => $request->username, 'password' => $request->password], $request->get('remember'))) {
             return redirect()->intended('/admin/dashboard');
         }
-        if (Auth::guard('proktor')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+        if (Auth::guard('proktor')->attempt(['username' => $request->username, 'password' => $request->password], $request->get('remember'))) {
             return redirect()->intended('/proktor/dashboard');
         }
-        if (Auth::guard('guru')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+        if (Auth::guard('guru')->attempt(['username' => $request->username, 'password' => $request->password], $request->get('remember'))) {
             return redirect()->intended('/guru/dashboard');
+        }
+        if (Auth::guard('siswa')->attempt(['username' => $request->username, 'password' => $request->password], $request->get('remember'))) {
+            return redirect()->intended('/siswa/konfirmasi-ujian');
         }
 
         return back()->withInput($request->only('email', 'remember'));
     }
 
-    protected function login_siswa(Request $request)
-    {
-        if ($this->username() == 'nis' && Auth::guard('siswa')->attempt(['nis' => $request->nis, 'password' => $request->password], $request->get('remember'))) {
-            return redirect('siswa/konfirmasi-ujian');
-        }
-    }
 }
