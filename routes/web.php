@@ -20,8 +20,8 @@ Route::get('/login', function () {
 });
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('login-siswa', function () {
-    return view('auth.siswa');
+Route::get('login-admin', function () {
+    return view('auth.login-admin');
 })->name('siswa.login-siswa');
 Route::post('post-login-siswa', [App\Http\Controllers\Auth\LoginController::class, 'login_siswa'])->name('post.login-siswa');
 
