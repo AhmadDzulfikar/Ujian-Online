@@ -44,22 +44,22 @@
                         </div>
 
                         <div class="card card-primary">
-                            <div class="card-header">
-                                <h4>Login</h4>
+                            <div class="card-header justify-content-center">
+                                <h4>Login Admin, Guru, dan Proktor</h4>
                             </div>
 
                             <div class="card-body">
-                                <form method="POST" action="{{ route('post.login-siswa') }}" class="needs-validation"
+                                <form method="POST" action="{{ route('login') }}" class="needs-validation"
                                     novalidate="">
                                     @csrf
 
                                     <div class="form-group">
-                                        <label for="nis">NIS</label>
-                                        <input id="nis" type="text" class="form-control" name="nis"
-                                            tabindex="1" value="{{ old('nis') }}" required autofocus>
-                                        {{-- <div class="invalid-feedback">
-                                            Masukkan NIS
-                                        </div> --}}
+                                        <label for="email">Email</label>
+                                        <input id="email" type="email" class="form-control" name="email"
+                                            tabindex="1" value="{{ old('email') }}" required autofocus>
+                                        <div class="invalid-feedback">
+                                            Masukkan Email
+                                        </div>
                                     </div>
 
                                     <div class="form-group">
@@ -75,7 +75,7 @@
                                         <input id="password" type="password" class="form-control" name="password"
                                             tabindex="2" required>
                                         <div class="invalid-feedback">
-                                            please fill in your password
+                                            Masukkan password
                                         </div>
                                     </div>
 
@@ -111,9 +111,9 @@
 
                             </div>
                         </div>
-                        <div class="mt-5 text-muted text-center">
-                            Don't have an account? <a href="auth-register.html">Create One</a>
-                        </div>
+                        {{-- <div class="mt-5 text-muted text-center">
+                            <a href="/login-siswa">Login Siswa</a>
+                        </div> --}}
                         <div class="simple-footer">
                             Copyright &copy; Stisla 2018
                         </div>
