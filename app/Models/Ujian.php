@@ -21,10 +21,6 @@ class Ujian extends Model
     {
         return $this->belongsTo(Mapel::class);
     }
-    public function tokens()
-    {
-        return $this->hasOne(Token::class);
-    }
     public function soals()
     {
         return $this->hasMany(Soal::class);

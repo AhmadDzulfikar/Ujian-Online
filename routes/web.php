@@ -87,10 +87,13 @@ Route::middleware(['auth:guru'])->group(function () {
     })->name('guru.dashboard');
 });
 
-Route::middleware(['auth:siswa'])->group(function () {
-    Route::get('/siswa/konfirmasi-ujian', function () {
-        return view('siswa.konfirmasi-ujian');
-    })->name('siswa.konfirmasi-ujian');
+Route::middleware(['auth:siswa'])->prefix('siswa')->group(function () {
+    Route::controller(App\Http\Controllers\Siswa\UjianController::class)
+        ->group(function () {
+            Route::get('/konfirmasi-ujian', 'index')->name('siswa.konfirmasi-ujian');
+            Route::post('/soal-ujian/{ujian}/{enkripsi}', 'soal_ujian')->name('siswa.soal-ujian');
+            Route::post('/submit-token', 'submit_token')->name('siswa.submit-token');
+        });
 });
 
 Auth::routes();

@@ -166,19 +166,8 @@ class FirstSeeder extends Seeder
 
         //TOKEN
         Token::Create([
-            'ujian_id' => 1,
             'token' => 'FWGGSH',
-            'expired_date' => '07:07:30',
-        ]);
-        Token::Create([
-            'ujian_id' => 1,
-            'token' => 'GSHASA',
-            'expired_date' => '09:07:30',
-        ]);
-        Token::Create([
-            'ujian_id' => 1,
-            'token' => 'KSJAHW',
-            'expired_date' => '08:07:30',
+            'expired_date' => date('Y-m-d H:i:s'),
         ]);
 
         //SOAL

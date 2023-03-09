@@ -55,7 +55,7 @@
             </nav>
 
             <nav class="navbar navbar-secondary navbar-expand-lg">
-              <marquee behavior="" direction="">SELAMAT MENGERJAKAN, KERJAKAKAN DENGAN JUJUR</marquee>
+                <marquee behavior="" direction="">SELAMAT MENGERJAKAN UJIAN, KERJAKAKAN DENGAN JUJUR</marquee>
             </nav>
 
             <!-- Main Content -->
@@ -71,7 +71,7 @@
             </div>
             <footer class="main-footer">
                 <div class="footer-left">
-                
+
                 </div>
                 <div class="footer-right">
 

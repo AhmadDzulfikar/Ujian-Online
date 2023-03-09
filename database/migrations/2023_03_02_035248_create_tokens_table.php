@@ -15,9 +15,8 @@ class CreateTokensTable extends Migration
     {
         Schema::create('tokens', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('ujian_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->string('token',20);
-            $table->time('expired_date');
+            $table->string('token', 20);
+            $table->timestamp('expired_date');
             $table->timestamps();
         });
     }
