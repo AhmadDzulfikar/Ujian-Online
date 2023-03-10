@@ -191,22 +191,6 @@ class FirstSeeder extends Seeder
             'poin' => 20
         ]);
 
-        //JAWABAN SISWA
-        JawabanSiswa::Create([
-            'soal_id' => 1,
-            'siswa_id' => 1,
-            'jawaban' => 'A',
-        ]);
-        JawabanSiswa::Create([
-            'soal_id' => 2,
-            'siswa_id' => 1,
-            'jawaban' => 'Mulawarman',
-        ]);
-        JawabanSiswa::Create([
-            'soal_id' => 3,
-            'siswa_id' => 1,
-            'jawaban' => 'Karena nasi yang digoreng',
-        ]);
 
         //OPSI
         Opsi::Create([
@@ -241,34 +225,6 @@ class FirstSeeder extends Seeder
         ]);
 
 
-        Opsi::Create([
-            'opsi' => 'Opsi 1',
-            'soal_id' => 2,
-            'is_correct' => 'wrong',
-            'urutan' => 6
-        ]);
-
-        Opsi::Create([
-            'opsi' => 'Opsi 2',
-            'soal_id' => 2,
-            'is_correct' => 'wrong',
-            'urutan' => 7
-        ]);
-
-
-        // Opsi::Create([
-        //     'opsi' => 'B',
-        //     'soal_id' => 2,
-        //     'is_correct' => 'correct',
-        //     'urutan' => 2
-        // ]);
-        // Opsi::Create([
-        //     'opsi' => 'C',
-        //     'soal_id' => 3,
-        //     'is_correct' => 'wrong',
-        //     'urutan' => 3
-        // ]);
-
         //ISIAN SINGKAT
         IsianSingkat::Create([
             'soal_id' => 2,
@@ -277,7 +233,8 @@ class FirstSeeder extends Seeder
 
         //IDENTITAS
         Identitas::Create([
-            'nama' => 'SMKN 10 JAKARTA',
+            'nama' => 'Ujian Online SMKN 10 Jakarta',
+            'tagline' => 'Online Exams',
             'alamat' => 'Cawang SMEAN 6',
             'email' => 'SMKN10@gmail.com',
             'nomor' => '082018212091',

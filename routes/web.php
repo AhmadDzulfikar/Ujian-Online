@@ -93,6 +93,8 @@ Route::middleware(['auth:siswa'])->prefix('siswa')->group(function () {
             Route::get('/konfirmasi-ujian', 'index')->name('siswa.konfirmasi-ujian');
             Route::get('/soal-ujian/{ujian}/{enkripsi}', 'soal_ujian')->name('siswa.soal-ujian');
             Route::post('/submit-token', 'submit_token')->name('siswa.submit-token');
+            Route::post('/submit-ujian', 'submit_ujian')->name('siswa.submit-ujian');
+            Route::get('/logout-ujian', 'logout_ujian')->name('siswa.logout-ujian');
         });
 });
 

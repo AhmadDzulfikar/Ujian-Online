@@ -14,6 +14,7 @@ class Identitas extends Model
         'alamat',
         'email',
         'nomor',
-        'foto'
+        'foto',
+        'tagline'
     ];
 }

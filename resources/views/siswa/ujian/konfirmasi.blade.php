@@ -1,30 +1,24 @@
 @extends('layouts.user')
 
 @section('content')
-    <a class="dropdown-item" href="{{ route('logout') }}"
-        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-        {{ __('Logout') }}
-    </a>
-
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-        @csrf
-    </form>
-    {{-- {{ Auth::guard('siswa')->user() }} --}}
-
     <style>
         .heading-info {
             font-size: 16px;
             font-weight: 700 !important
         }
     </style>
+    @if (session('message'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('message') }}
+        </div>
+    @endif
     <div class="card" id="sample-login">
         <form action="{{ route('siswa.submit-token') }}" method="post">
             @csrf
             <div class="card-body">
                 <div class="">
                     <div class="form-group">
-                        <p class="text-primary mb-0 heading-info">Mata Pelajaran    </p>
+                        <p class="text-primary mb-0 heading-info">Mata Pelajaran </p>
                         <select name="mapel_id" id="mapel" class="form-control">
                             <option value="">--Pilih Mapel --</option>
                             @foreach ($mapels as $mapel)

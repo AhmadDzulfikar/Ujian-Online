@@ -1,40 +1,62 @@
 @extends('layouts.user')
 
 @section('content')
-    <a class="dropdown-item" href="{{ route('logout') }}"
-        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-        {{ __('Logout') }}
-    </a>
-
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-        @csrf
-    </form>
-    <p id="countdown"></p>
+    <p class="btn btn-outline-success" id="countdown"></p>
     <form action="" id="myForm">
+        <input type="hidden" id="siswa_id" value="{{ Auth::guard('siswa')->user()->id }}">
+        <input type="hidden" id="ujian_id" value="{{ $get_ujian->id }}">
         @foreach ($soals as $soal)
             <div id="{{ $soal->id }}" class="form-group">
                 <label class="d-block">
                     <p>{{ $loop->iteration }} . {{ $soal->text }}</p>
                 </label>
-                @foreach ($soal->opsis as $opsi)
-                    <div class="form-check">
-                        <input class="form-check-input" onclick="saveAnswer('{{ $soal->id }}' ,'{{ $opsi->opsi }}')"
-                            type="radio" value="{{ $opsi->opsi }}" name="answer[{{ $soal->id }}][]"
-                            id="radio-{{ $opsi->id }}">
-                        <label class="form-check-label">
-                            {{ $opsi->opsi }}
-                        </label>
-                    </div>
-                @endforeach
+                @if ($soal->tipe == 'pg')
+                    @foreach ($soal->opsis as $opsi)
+                        <div class="form-check">
+                            <input class="form-check-input"
+                                onclick="saveAnswer('{{ $soal->id }}' ,'{{ $opsi->opsi }}')" type="radio"
+                                value="{{ $opsi->opsi }}" name="answer[{{ $soal->id }}][]"
+                                id="radio-{{ $opsi->id }}">
+                            <label class="form-check-label">
+                                {{ $opsi->opsi }}
+                            </label>
+                        </div>
+                    @endforeach
+                @endif
+                @if ($soal->tipe == 'isian_singkat')
+                    <input type="text" class="form-control" onkeyup="jawaban_isian_singkat({{ $soal->id }})"
+                        id="isian_singkat" name="answer[{{ $soal->id }}][]">
+                @endif
+
+                @if ($soal->tipe == 'uraian')
+                    <textarea cols="30" rows="20" id="uraian" onkeyup="uraians({{ $soal->id }})"
+                        name="answer[{{ $soal->id }}][]" class="form-control"></textarea>
+                @endif
             </div>
         @endforeach
     </form>
 
     <script>
         // Inisialisasi variabel untuk jawaban dan waktu countdown
+        let ujian = document.getElementById('ujian_id').value;
+        let siswa = document.getElementById('siswa_id').value;
+        let isian_singkat = document.getElementById('isian_singkat');
+        let uraian = document.getElementById('uraian');
+
         var answers = {};
         var countdown = 60; // dalam detik
+
+        function jawaban_isian_singkat(questionId) {
+            isian_singkat.onkeyup = function() {
+                saveAnswer(questionId, isian_singkat.value)
+            }
+        }
+
+        function uraians(questionId) {
+            uraian.onkeyup = function() {
+                console.log(saveAnswer(questionId, uraian.value))
+            }
+        }
 
         // Fungsi untuk memulai timer countdown
         function startCountdown() {
@@ -85,7 +107,25 @@
 
         // Fungsi untuk submit jawaban
         function submitAnswers() {
-            // 
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('siswa.submit-ujian') }}",
+                data: {
+                    ujian_id: ujian,
+                    siswa_id: siswa,
+                    answer: JSON.parse(localStorage.getItem("answers")),
+                },
+                success: function(data) {
+                    window.location.href = "{{ route('siswa.logout-ujian') }}";
+                    window.localStorage.clear();
+                }
+            });
         }
 
         // Panggil fungsi startExam() saat halaman dimuat
