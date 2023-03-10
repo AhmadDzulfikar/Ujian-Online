@@ -90,7 +90,6 @@
             $.each(savedAnswers, function(i, v) {
                 $("input[name='answer[" + i + "][]'][value='" + v + "']").attr("checked", "checked");
                 $("input[id='isian_singkat'][name='answer[" + i + "][]']").attr('value', v);
-                $("input[id='uraian'][name='answer[" + i + "][]']").attr('value', v);
             });
 
         }
