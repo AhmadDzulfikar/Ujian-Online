@@ -44,7 +44,7 @@
         let uraian = document.getElementById('uraian');
 
         var answers = {};
-        var countdown = 60; // dalam detik
+        var countdown = 1500; // dalam detik
 
         function jawaban_isian_singkat(questionId) {
             isian_singkat.onkeyup = function() {
@@ -86,6 +86,13 @@
                     document.getElementById(questionId).value = savedAnswers[questionId];
                 }
             }
+            // ketika direfresh datanya tetep tampil
+            $.each(savedAnswers, function(i, v) {
+                $("input[name='answer[" + i + "][]'][value='" + v + "']").attr("checked", "checked");
+                $("input[id='isian_singkat'][name='answer[" + i + "][]']").attr('value', v);
+                $("input[id='uraian'][name='answer[" + i + "][]']").attr('value', v);
+            });
+
         }
         console.log((localStorage.getItem("answers")))
 
