@@ -73,6 +73,12 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
             Route::get('/', 'index')->name('admin.generate-token');
             Route::post('/store', 'generate_token_ujian')->name('admin.generate-token-ujian');
         });
+    Route::controller(App\Http\Controllers\Admin\IdentitasController::class)
+        ->prefix('identitas')
+        ->group(function () {
+            Route::get('/', 'index')->name('admin.identitas');
+            Route::put('/update', 'update')->name('admin.update.identitas');
+        });
 });
 
 Route::middleware(['auth:proktor'])->group(function () {

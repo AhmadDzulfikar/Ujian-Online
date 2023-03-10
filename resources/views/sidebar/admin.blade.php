@@ -42,3 +42,16 @@
     </a>
 </li>
 
+{{-- <li class="{{ request()->is('admin/absensi') ? 'active' : '' }}">
+    <a class="nav-link" href="#">
+        <i class="far fa-square"></i>
+        <span>Absensi</span>
+    </a>
+</li> --}}
+
+<li class="{{ request()->is('admin/identitas') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('admin.identitas') }}">
+        <i class="far fa-square"></i>
+        <span>Identitas Aplikasi</span>
+    </a>
+</li>
