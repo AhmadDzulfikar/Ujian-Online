@@ -16,6 +16,10 @@ class Soal extends Model
         'poin',
     ];
 
+    public function opsis()
+    {
+        return $this->hasMany(Opsi::class);
+    }
     public function ujian()
     {
         return $this->belongsTo(Ujian::class);

@@ -51,7 +51,7 @@ class UjianController extends Controller
 
         $get_ujian = Ujian::where('nama', $ujian)->first();
         if ($ujian == $nama_ujian && $created_at == $get_ujian->created_at) {
-            $soals = Soal::where('ujian_id', $get_ujian->id)->inRandomOrder()->get();
+            $soals = Soal::where('ujian_id', $get_ujian->id)->get();
             return view('siswa.ujian.soal', compact('soals'));
         } else {
             return redirect('siswa/konfirmasi-ujian');

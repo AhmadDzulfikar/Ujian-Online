@@ -16,6 +16,7 @@ use App\Models\Soal;
 use App\Models\Token;
 use App\Models\Ujian;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class FirstSeeder extends Seeder
@@ -167,7 +168,7 @@ class FirstSeeder extends Seeder
         //TOKEN
         Token::Create([
             'token' => 'FWGGSH',
-            'expired_date' => date('Y-m-d H:i:s'),
+            'expired_date' => Carbon::now()->addMinutes(10),
         ]);
 
         //SOAL
@@ -209,23 +210,64 @@ class FirstSeeder extends Seeder
 
         //OPSI
         Opsi::Create([
-            'opsi' => 'A',
-            'ujian_id' => 1,
+            'opsi' => 'Opsi 1',
+            'soal_id' => 1,
             'is_correct' => 'correct',
             'urutan' => 1
         ]);
         Opsi::Create([
-            'opsi' => 'B',
-            'ujian_id' => 2,
-            'is_correct' => 'correct',
+            'opsi' => 'Opsi 2',
+            'soal_id' => 1,
+            'is_correct' => 'wrong',
             'urutan' => 2
         ]);
         Opsi::Create([
-            'opsi' => 'C',
-            'ujian_id' => 3,
+            'opsi' => 'Opsi 3',
+            'soal_id' => 1,
             'is_correct' => 'wrong',
             'urutan' => 3
         ]);
+        Opsi::Create([
+            'opsi' => 'Opsi 4',
+            'soal_id' => 1,
+            'is_correct' => 'wrong',
+            'urutan' => 4
+        ]);
+        Opsi::Create([
+            'opsi' => 'Opsi 5',
+            'soal_id' => 1,
+            'is_correct' => 'wrong',
+            'urutan' => 5
+        ]);
+
+
+        Opsi::Create([
+            'opsi' => 'Opsi 1',
+            'soal_id' => 2,
+            'is_correct' => 'wrong',
+            'urutan' => 6
+        ]);
+
+        Opsi::Create([
+            'opsi' => 'Opsi 2',
+            'soal_id' => 2,
+            'is_correct' => 'wrong',
+            'urutan' => 7
+        ]);
+
+
+        // Opsi::Create([
+        //     'opsi' => 'B',
+        //     'soal_id' => 2,
+        //     'is_correct' => 'correct',
+        //     'urutan' => 2
+        // ]);
+        // Opsi::Create([
+        //     'opsi' => 'C',
+        //     'soal_id' => 3,
+        //     'is_correct' => 'wrong',
+        //     'urutan' => 3
+        // ]);
 
         //ISIAN SINGKAT
         IsianSingkat::Create([
