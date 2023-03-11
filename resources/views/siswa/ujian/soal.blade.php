@@ -44,7 +44,9 @@
         let uraian = document.getElementById('uraian');
 
         var answers = {};
-        var countdown = 1500; // dalam detik
+        var alokasi_waktu = `{{ $get_ujian->alokasi_waktu }}` * 60
+        console.log(alokasi_waktu)
+        var countdown = alokasi_waktu; // dalam detik
 
         function jawaban_isian_singkat(questionId) {
             isian_singkat.onkeyup = function() {
@@ -62,8 +64,12 @@
         function startCountdown() {
             var timer = setInterval(function() {
                 countdown--;
+                var secs = Math.floor(countdown % 60);
+                var mins = Math.floor((countdown / 60) % 60);
+                var hours = Math.floor((countdown / (60 * 60)));
+                var end = hours + ":" + mins + ":" + secs
                 document.getElementById("countdown").innerHTML =
-                    countdown; // update nilai countdown pada halaman web
+                    end; // update nilai countdown pada halaman web
                 if (countdown == 0) {
                     clearInterval(timer);
                     submitAnswers(); // submit jawaban ketika waktu habis
@@ -86,7 +92,6 @@
                     document.getElementById(questionId).value = savedAnswers[questionId];
                 }
             }
-            // ketika direfresh datanya tetep tampil
             $.each(savedAnswers, function(i, v) {
                 $("input[name='answer[" + i + "][]'][value='" + v + "']").attr("checked", "checked");
                 $("input[id='isian_singkat'][name='answer[" + i + "][]']").attr('value', v);
