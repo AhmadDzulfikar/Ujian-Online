@@ -8,13 +8,17 @@
     </ul>
 </li> --}}
 <li>
-    <a class="nav-link" href="blank.html">
+    <a class="nav-link" href="{{ route('proktor.dashboard') }}">
         <i class="far fa-square"></i>
         <span>Dashboard</span>
     </a>
 </li>
 <li>
-    <a class="nav-link" href="blank.html">
+    <a class="nav-link" href="{{ route('proktor.generate-token') }}">
+        <i class="far fa-square"></i>
+        <span>Token</span>
+    </a>
+    <a class="nav-link" href="{{ route('proktor.status-peserta') }}">
         <i class="far fa-square"></i>
         <span>Status Peserta</span>
     </a>

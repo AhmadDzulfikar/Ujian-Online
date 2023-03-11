@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Proktor\DashboardController;
+use App\Http\Controllers\Proktor\GenerateTokenController;
+use App\Http\Controllers\Proktor\StatusPesertaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -75,10 +78,20 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
         });
 });
 
-Route::middleware(['auth:proktor'])->group(function () {
-    Route::get('/proktor/dashboard', function () {
-        return view('proktor.dashboard');
-    })->name('proktor.dashboard');
+Route::middleware(['auth:proktor'])->prefix('proktor')->group(function () {
+    Route::get('/dashboard',[DashboardController::class, 'index'])->name('proktor.dashboard');
+    Route::controller(GenerateTokenController::class)
+    ->prefix('generate-token')
+    ->group(function() {
+            Route::get('/','index')->name('proktor.generate-token');
+            Route::post('/store', 'store')->name('proktor.generate-token-ujian');
+    });
+
+    Route::controller(StatusPesertaController::class)
+    ->prefix('status-peserta')
+    ->group(function() {
+            Route::get('/' , 'index')->name('proktor.status-peserta');
+    });
 });
 
 Route::middleware(['auth:guru'])->group(function () {
