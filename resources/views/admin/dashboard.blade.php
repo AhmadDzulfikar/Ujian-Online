@@ -2,11 +2,11 @@
 @section('content')
 
     <section class="section">
-        <div class="section-header">
+        {{-- <div class="section-header">
             <h1>
                 Dashboard
             </h1>
-        </div>
+        </div> --}}
         <div class="row">
             <div class="col-12 col-md-3">
                 <div class="card card-statistic-1">
@@ -15,10 +15,10 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Data Guru</h4>
+                            <h4 class="mb-3">Data Guru</h4>
                         </div>
                         <div class="card-body">
-                            4
+                            {{ $guru }}
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                             <h4>Data Siswa</h4>
                         </div>
                         <div class="card-body">
-                            4
+                            {{ $siswa }}
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                             <h4>Data Mapel</h4>
                         </div>
                         <div class="card-body">
-                            4
+                            {{ $mapel }}
                         </div>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                             <h4>Data Kelas</h4>
                         </div>
                         <div class="card-body">
-                            4
+                            {{ $kelas }}
                         </div>
                     </div>
                 </div>
@@ -71,7 +71,24 @@
         </div>
         <div class="card">
             <div class="card-header">
-                Ujian yang Sedang Berlangsung
+                <h4>Ujian yang sedang Berlangsung</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped" id="table-1">
+                        <thead>
+                            <tr>
+                                <th>Nama Mapel</th>
+                                <th>Waktu Mulai</th>
+                                <th>Alokasi Waktu</th>
+                                <th>Tanggal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </section>
