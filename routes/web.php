@@ -20,11 +20,6 @@ Route::get('/login', function () {
 });
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('login-admin', function () {
-    return view('auth.login-admin');
-})->name('siswa.login-siswa');
-Route::post('post-login-siswa', [App\Http\Controllers\Auth\LoginController::class, 'login_siswa'])->name('post.login-siswa');
-
 Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
 
@@ -37,7 +32,7 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
             Route::delete('/delete/{id}', 'destroy')->name('admin.delete.guru');
         });
 
-        Route::controller(App\Http\Controllers\Admin\SiswaController::class)
+    Route::controller(App\Http\Controllers\Admin\SiswaController::class)
         ->prefix('siswa')
         ->group(function () {
             Route::get('/', 'index')->name('admin.siswa');
@@ -55,7 +50,7 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
             Route::delete('/delete/{id}', 'destroy')->name('admin.delete.mapel');
         });
 
-        Route::controller(App\Http\Controllers\Admin\KelasController::class)
+    Route::controller(App\Http\Controllers\Admin\KelasController::class)
         ->prefix('kelas')
         ->group(function () {
             Route::get('/', 'index')->name('admin.kelas');
@@ -64,7 +59,7 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
             Route::delete('/delete/{id}', 'destroy')->name('admin.delete.kelas');
         });
 
-        Route::controller(App\Http\Controllers\Admin\UjianController::class)
+    Route::controller(App\Http\Controllers\Admin\UjianController::class)
         ->prefix('ujian')
         ->group(function () {
             Route::get('/', 'index')->name('admin.ujian');
@@ -72,7 +67,7 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
             Route::put('/update/{id}', 'update')->name('admin.update.ujian');
             Route::delete('/delete/{id}', 'destroy')->name('admin.delete.ujian');
         });
-        Route::controller(App\Http\Controllers\Admin\GenerateTokenController::class)
+    Route::controller(App\Http\Controllers\Admin\GenerateTokenController::class)
         ->prefix('generate-token')
         ->group(function () {
             Route::get('/', 'index')->name('admin.generate-token');
@@ -92,10 +87,15 @@ Route::middleware(['auth:guru'])->group(function () {
     })->name('guru.dashboard');
 });
 
-Route::middleware(['auth:siswa'])->group(function () {
-    Route::get('/siswa/konfirmasi-ujian', function () {
-        return view('siswa.konfirmasi-ujian');
-    })->name('siswa.konfirmasi-ujian');
+Route::middleware(['auth:siswa'])->prefix('siswa')->group(function () {
+    Route::controller(App\Http\Controllers\Siswa\UjianController::class)
+        ->group(function () {
+            Route::get('/konfirmasi-ujian', 'index')->name('siswa.konfirmasi-ujian');
+            Route::get('/soal-ujian/{ujian}/{enkripsi}', 'soal_ujian')->name('siswa.soal-ujian');
+            Route::post('/submit-token', 'submit_token')->name('siswa.submit-token');
+            Route::post('/submit-ujian', 'submit_ujian')->name('siswa.submit-ujian');
+            Route::get('/logout-ujian', 'logout_ujian')->name('siswa.logout-ujian');
+        });
 });
 
 Auth::routes();

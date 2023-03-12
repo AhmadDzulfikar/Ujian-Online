@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>Layout &rsaquo; Top Navigation &mdash; Stisla</title>
 
     <!-- General CSS Files -->
@@ -35,7 +37,8 @@
         <div class="main-wrapper container">
             <div class="navbar-bg"></div>
             <nav class="navbar navbar-expand-lg main-navbar">
-                <a href="index.html" class="navbar-brand sidebar-gone-hide">Stisla</a>
+                <a href="index.html"
+                    class="navbar-brand sidebar-gone-hide">{{ \App\Models\Identitas::first()->tagline }}</a>
                 <a href="#" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i
                         class="fas fa-bars"></i></a>
                 <form class="form-inline ml-auto">
@@ -47,31 +50,25 @@
                 <ul class="navbar-nav navbar-right">
                     <li class="dropdown"><a href="#" data-toggle="dropdown"
                             class="nav-link nav-link-lg nav-link-user">
+                            <div class="d-sm-none d-lg-inline-block">{{ Auth::guard('siswa')->user()->fullname }}
+                                [{{ Auth::guard('siswa')->user()->username }}]</div>
                             <img alt="image" src="/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-                            <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div>
                         </a>
                     </li>
                 </ul>
             </nav>
 
             <nav class="navbar navbar-secondary navbar-expand-lg">
-              <marquee behavior="" direction="">SELAMAT MENGERJAKAN, KERJAKAKAN DENGAN JUJUR</marquee>
+                <marquee behavior="" direction="">SELAMAT MENGERJAKAN UJIAN, KERJAKAKAN DENGAN JUJUR</marquee>
             </nav>
 
             <!-- Main Content -->
             <div class="main-content">
                 @yield('content')
-                {{-- <section class="section">
-                    <div class="section-header">
-                    </div>
-
-                    <div class="section-body">
-                    </div>
-                </section> --}}
             </div>
             <footer class="main-footer">
                 <div class="footer-left">
-                
+
                 </div>
                 <div class="footer-right">
 

@@ -11,12 +11,12 @@ class Opsi extends Model
     
     protected $fillable = [
         'opsi',
-        'ujian_id',
+        'soal_id',
         'is_correct',
         'urutan',
     ];
-    public function ujian()
+    public function soal()
     {
-        return $this->belongsTo(Ujian::class);
+        return $this->belongsTo(Soal::class);
     }
 }

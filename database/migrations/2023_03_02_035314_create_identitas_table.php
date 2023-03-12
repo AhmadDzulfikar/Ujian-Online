@@ -15,10 +15,11 @@ class CreateIdentitasTable extends Migration
     {
         Schema::create('identitas', function (Blueprint $table) {
             $table->id();
-            $table->string('nama',70);
+            $table->string('nama', 70);
+            $table->string('tagline', 70);
             $table->text('alamat');
-            $table->string('email',125);
-            $table->char('nomor',50);
+            $table->string('email', 125);
+            $table->char('nomor', 50);
             $table->text('foto')->nullable();
             $table->timestamps();
         });

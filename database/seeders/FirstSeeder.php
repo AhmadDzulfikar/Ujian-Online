@@ -16,6 +16,7 @@ use App\Models\Soal;
 use App\Models\Token;
 use App\Models\Ujian;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class FirstSeeder extends Seeder
@@ -31,7 +32,8 @@ class FirstSeeder extends Seeder
         User::create([
             'email' => 'user@gmail.com',
             'password' => bcrypt('password'),
-            'name' => 'user'
+            'name' => 'user',
+            'username' => 'user'
         ]);
         Admin::Create([
             'email' => 'admin@gmail.com',
@@ -107,21 +109,21 @@ class FirstSeeder extends Seeder
         Siswa::Create([
             'nis' => '10634',
             'fullname' => 'sasong sanjoyo',
-            'username' => 'sasong',
+            'username' => '10634',
             'password' => bcrypt('password'),
             'kelas_id' => 1
         ]);
         Siswa::Create([
             'nis' => '10673',
             'fullname' => 'Dap dancugi',
-            'username' => 'dap',
+            'username' => '10673',
             'password' => bcrypt('password'),
             'kelas_id' => 2
         ]);
         Siswa::Create([
             'nis' => '10687',
             'fullname' => 'Hadni Phastura',
-            'username' => 'hadni',
+            'username' => '10687',
             'password' => bcrypt('password'),
             'kelas_id' => 3
         ]);
@@ -165,19 +167,8 @@ class FirstSeeder extends Seeder
 
         //TOKEN
         Token::Create([
-            'ujian_id' => 1,
             'token' => 'FWGGSH',
-            'expired_date' => '07:07:30',
-        ]);
-        Token::Create([
-            'ujian_id' => 1,
-            'token' => 'GSHASA',
-            'expired_date' => '09:07:30',
-        ]);
-        Token::Create([
-            'ujian_id' => 1,
-            'token' => 'KSJAHW',
-            'expired_date' => '08:07:30',
+            'expired_date' => Carbon::now()->addMinutes(10),
         ]);
 
         //SOAL
@@ -200,42 +191,39 @@ class FirstSeeder extends Seeder
             'poin' => 20
         ]);
 
-        //JAWABAN SISWA
-        JawabanSiswa::Create([
-            'soal_id' => 1,
-            'siswa_id' => 1,
-            'jawaban' => 'A',
-        ]);
-        JawabanSiswa::Create([
-            'soal_id' => 2,
-            'siswa_id' => 1,
-            'jawaban' => 'Mulawarman',
-        ]);
-        JawabanSiswa::Create([
-            'soal_id' => 3,
-            'siswa_id' => 1,
-            'jawaban' => 'Karena nasi yang digoreng',
-        ]);
 
         //OPSI
         Opsi::Create([
-            'opsi' => 'A',
-            'ujian_id' => 1,
+            'opsi' => 'Opsi 1',
+            'soal_id' => 1,
             'is_correct' => 'correct',
             'urutan' => 1
         ]);
         Opsi::Create([
-            'opsi' => 'B',
-            'ujian_id' => 2,
-            'is_correct' => 'correct',
+            'opsi' => 'Opsi 2',
+            'soal_id' => 1,
+            'is_correct' => 'wrong',
             'urutan' => 2
         ]);
         Opsi::Create([
-            'opsi' => 'C',
-            'ujian_id' => 3,
+            'opsi' => 'Opsi 3',
+            'soal_id' => 1,
             'is_correct' => 'wrong',
             'urutan' => 3
         ]);
+        Opsi::Create([
+            'opsi' => 'Opsi 4',
+            'soal_id' => 1,
+            'is_correct' => 'wrong',
+            'urutan' => 4
+        ]);
+        Opsi::Create([
+            'opsi' => 'Opsi 5',
+            'soal_id' => 1,
+            'is_correct' => 'wrong',
+            'urutan' => 5
+        ]);
+
 
         //ISIAN SINGKAT
         IsianSingkat::Create([
@@ -245,7 +233,8 @@ class FirstSeeder extends Seeder
 
         //IDENTITAS
         Identitas::Create([
-            'nama' => 'SMKN 10 JAKARTA',
+            'nama' => 'Ujian Online SMKN 10 Jakarta',
+            'tagline' => 'Online Exams',
             'alamat' => 'Cawang SMEAN 6',
             'email' => 'SMKN10@gmail.com',
             'nomor' => '082018212091',
