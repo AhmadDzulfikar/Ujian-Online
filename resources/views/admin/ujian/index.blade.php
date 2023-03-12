@@ -11,9 +11,9 @@
         <div class="section-body">
 
             <div class="card">
-                <div class="card-header">
+                <div class="card-header justify-content-end">
                     <button class="btn btn-primary" data-toggle="modal" data-target="#tambah">
-                        <i class="fas fa-plus"></i>
+                        <i class="fas fa-plus"></i> Tambah Ujian
                     </button>
                 </div>
                 <div class="card-body">
@@ -22,7 +22,7 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">
-                                        #
+                                        No.
                                     </th>
                                     <th>Nama</th>
                                     <th>Mapel</th>
@@ -35,7 +35,7 @@
                             <tbody>
                                 @foreach ($ujians as $ujian)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                        <td class="text-center">{{ $loop->iteration }}</td>
                                         <td>{{ $ujian->nama }}</td>
                                         <td>{{ $ujian->mapel->nama }}</td>
                                         <td>{{ $ujian->waktu_mulai }}</td>
