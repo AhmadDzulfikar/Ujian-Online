@@ -1998,11 +1998,11 @@ a.bb {
   content: '/'; }
 
 .login-brand {
-  margin: 20px 0;
-  margin-bottom: 40px;
-  font-size: 24px;
+  margin: 7px 0;
+  margin-bottom: 30px;
+  font-size: 10px;
   text-transform: uppercase;
-  letter-spacing: 4px;
+  letter-spacing: 0px;
   color: #666;
   text-align: center; }
 

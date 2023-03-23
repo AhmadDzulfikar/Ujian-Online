@@ -33,7 +33,7 @@
 </head>
 
 <body class="layout-3">
-    <div id="app">
+    <div id="app" class="background-image">
         <div class="main-wrapper container">
             <div class="navbar-bg"></div>
             <nav class="navbar navbar-expand-lg main-navbar">
@@ -63,7 +63,7 @@
             </nav>
 
             <!-- Main Content -->
-            <div class="main-content">
+            <div class="main-content ">
                 @yield('content')
             </div>
             <footer class="main-footer">
