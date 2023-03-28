@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Login &mdash; Stisla</title>
+    <title>Ujian Online</title>
+    <link rel="icon" type="image/x-icon" href="/assets/img/logo10.ico">
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="/assets/modules/bootstrap/css/bootstrap.min.css">
@@ -41,18 +42,19 @@
                     <div style="max-width: 50%;">
                         <div class="login-brand"
                             style="display: flex; justify-content:start; align-items:center; gap: 20px; margin-top: 3rem;">
-                            <img src="/assets/img/logo10.jpeg" alt="logo" width="100">
+                            <img style="user-select: none; width:100;" src="/assets/img/logo10.jpeg" alt="logo"
+                                width="100">
                             <div
                                 style="text-align: start; font-family: Poppins, sans-serif; text-transform: capitalize;">
-                                <div style="font-size: 30px; font-weight: 700;">SMKN 10 JAKARTA</div>
-                                <div style="font-size: 26px; font-weight: 600;">
-                                    <span style="color:#0EB752">Online</span>
-                                    <span style="color:#F15754">Exams</span>
+                                <div style="font-size: 30px; font-weight: 700; user-select: none">SMKN 10 JAKARTA</div>
+                                <div style="font-size: 26px; font-weight: 600; user-select: none">
+                                    <span style="color:#0EB752; ">Online</span>
+                                    <span style="color:#F15754; ">Exams</span>
                                 </div>
                             </div>
                         </div>
-                        <img src="assets/img/img.png" width="70%" alt="">
-                        <div style="position: fixed; left: 36px; bottom: 20px;">
+                        <img style="user-select: none; width:70%;" src="assets/img/img.png" alt="">
+                        <div style="position: fixed; left: 36px; bottom: 20px; user-select: none;">
                             &copy; TenizenCode 2023
                         </div>
                     </div>
@@ -60,7 +62,7 @@
                         <div>
                             <div class="card card-shadow mb-0" style="border-radius: 5%;">
                                 <div class="card-header justify-content-center" style="padding-top: 34px">
-                                    <h2><span style="color: #6777EF">Log In</span></h2>
+                                    <h2><span style="color: #6777EF; user-select: none">Log In</span></h2>
                                 </div>
 
                                 <div class="card-body" style="min-width: 312px;">

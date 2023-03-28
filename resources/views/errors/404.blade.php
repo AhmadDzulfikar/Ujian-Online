@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>404 &mdash; Stisla</title>
+    <title>Ujian Online</title>
+    <link rel="icon" type="image/x-icon" href="/assets/img/logo10.ico">
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="/assets/modules/bootstrap/css/bootstrap.min.css">
