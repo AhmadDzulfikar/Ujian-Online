@@ -13,6 +13,9 @@
         <span>Dashboard</span>
     </a>
 </li>
+
+<li class="menu-header">Master Data</li>
+
 <li>
     <a class="nav-link" href="{{ route('proktor.generate-token') }}">
         <i class="far fa-square"></i>
@@ -20,6 +23,18 @@
     </a>
     <a class="nav-link" href="{{ route('proktor.status-peserta') }}">
         <i class="far fa-square"></i>
-        <span>Status Peserta</span>
+        <span>Get Token</span>
+    </a>
+</li>
+<li>
+    <a class="nav-link" href="blank.html">
+        <i class="far fa-square"></i>
+        <span>Data Peserta</span>
+    </a>
+</li>
+<li>
+    <a class="nav-link" href="blank.html">
+        <i class="far fa-square"></i>
+        <span>Data Ujian</span>
     </a>
 </li>

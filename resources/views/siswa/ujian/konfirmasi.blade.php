@@ -6,6 +6,10 @@
             font-size: 16px;
             font-weight: 700 !important
         }
+
+        .background-img {
+            background-image: url('assets/img/bg.png');
+        }
     </style>
     @if (session('message'))
         <div class="alert alert-danger" role="alert">

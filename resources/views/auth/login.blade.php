@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Login &mdash; Stisla</title>
+    <title>Ujian Online</title>
+    <link rel="icon" type="image/x-icon" href="/assets/img/logo10.ico">
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="/assets/modules/bootstrap/css/bootstrap.min.css">
@@ -32,60 +33,121 @@
 </head>
 
 <body>
-    <div id="app">
+    <div id="app"
+        style="background-image: url('assets/img/bgbg.png');background-size:cover; background-repeat: no-repeat;
+    background-size: 100% 100%; background-attachment: fixed; opacity: 1; min-height: 101vh;">
         <section class="section">
-            <div class="container mt-5">
-                <div class="row">
-                    <div
-                        class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-                        <div class="login-brand">
-                            <img src="/assets/img/stisla-fill.svg" alt="logo" width="100"
-                                class="shadow-light rounded-circle">
-                        </div>
-
-                        <div class="card card-primary">
-                            <div class="card-header justify-content-center">
-                                <h4>{{ \App\Models\Identitas::first()->nama }}</h4>
-                            </div>
-                            <div class="d-flex justify-content-center">
-                                <h6>Login</h6>
-                            </div>
-                            <div class="card-body">
-                                <form method="POST" action="{{ route('login') }}" class="needs-validation"
-                                    novalidate="">
-                                    @csrf
-
-                                    <div class="form-group">
-                                        <label for="nis">Username</label>
-                                        <input id="nis" type="text" class="form-control" name="username"
-                                            tabindex="1" value="{{ old('username') }}" required autofocus>
-                                        <div class="invalid-feedback">
-                                            Login
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="d-block">
-                                            <label for="password" class="control-label">Password</label>
-                                        </div>
-                                        <input id="password" type="password" class="form-control" name="password"
-                                            tabindex="2" required>
-                                        <div class="invalid-feedback">
-                                            Masukkan password
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                            Login
-                                        </button>
-                                    </div>
-                                </form>
+            <div class="container ">
+                <div style="display: flex; ">
+                    <div style="max-width: 50%;">
+                        <div class="login-brand"
+                            style="display: flex; justify-content:start; align-items:center; gap: 20px; margin-top: 3rem;">
+                            <img style="user-select: none; width:100;" src="/assets/img/logo10.jpeg" alt="logo"
+                                width="100">
+                            <div
+                                style="text-align: start; font-family: Poppins, sans-serif; text-transform: capitalize;">
+                                <div style="font-size: 30px; font-weight: 700; user-select: none">SMKN 10 JAKARTA</div>
+                                <div style="font-size: 26px; font-weight: 600; user-select: none">
+                                    <span style="color:#0EB752; ">Online</span>
+                                    <span style="color:#F15754; ">Exams</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="simple-footer">
-                            Copyright &copy; Stisla 2018
+                        <img style="user-select: none; width:70%;" src="assets/img/img.png" alt="">
+                        <div style="position: fixed; left: 36px; bottom: 20px; user-select: none;">
+                            &copy; TenizenCode 2023
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content:center; width: 50%; height: 100vh; align-items:center;">
+                        <div>
+                            <div class="card card-shadow mb-0" style="border-radius: 5%;">
+                                <div class="card-header justify-content-center" style="padding-top: 34px">
+                                    <h2><span style="color: #6777EF; user-select: none">Log In</span></h2>
+                                </div>
+
+                                <div class="card-body" style="min-width: 312px;">
+                                    <form method="POST" action="{{ route('login') }}" class="needs-validation"
+                                        novalidate="">
+                                        @csrf
+
+                                        <div class="form-group">
+                                            {{-- <label for="nis">Username</label> --}}
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                        <i class="fas fa-user"></i>
+                                                    </div>
+                                                </div>
+                                                <input id="nis" type="text" class="form-control"
+                                                    name="username" placeholder="Username" tabindex="1"
+                                                    value="{{ old('username') }}" required autofocus>
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                Masukan Username
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="d-block">
+                                                {{-- <label for="password" class="control-label">Password</label> --}}
+                                            </div>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                        <i class="fa fa-lock"></i>
+                                                    </div>
+                                                </div>
+                                                <input id="password" placeholder="Password" type="password"
+                                                    class="form-control" name="password" tabindex="2" required>
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                Masukkan password
+                                            </div>
+                                            {{-- <div class="d-block">
+                                                <div class="float-right">
+                                                    <a href="auth-forgot-password.html" class="text-small">
+                                                        Forgot Password?
+                                                    </a>
+                                                </div>
+                                            </div> --}}
+                                        </div>
+
+                                        {{-- <div class="form-group">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" name="remember" class="custom-control-input"
+                                                        tabindex="3" id="remember-me">
+                                                    <label class="custom-control-label" for="remember-me">Remember Me</label>
+                                                </div>
+                                            </div> --}}
+
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block"
+                                                tabindex="4">
+                                                Login
+                                            </button>
+                                        </div>
+                                    </form>
+                                    {{-- <div class="text-center mt-4 mb-3">
+                                            <div class="text-job text-muted">Login With Social</div>
+                                        </div>
+                                        <div class="row sm-gutters">
+                                            <div class="col-6">
+                                                <a class="btn btn-block btn-social btn-facebook">
+                                                    <span class="fab fa-facebook"></span> Facebook
+                                                </a>
+                                            </div>
+                                            <div class="col-6">
+                                                <a class="btn btn-block btn-social btn-twitter">
+                                                    <span class="fab fa-twitter"></span> Twitter
+                                                </a>
+                                            </div>
+                                        </div> --}}
+
+                                </div>
+                            </div>
+                            {{-- <div class="mt-5 text-muted text-center">
+                                    <a href="/login">Login Admin</a>
+                                </div> --}}
                         </div>
                     </div>
                 </div>

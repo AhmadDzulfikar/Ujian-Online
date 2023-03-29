@@ -74,7 +74,7 @@ class FirstSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
 
-        //PROKTOKTOR
+        //PROKTOR
         Proktor::Create([
             'email' => 'proktor@gmail.com',
             'fullname' => 'proktor1',

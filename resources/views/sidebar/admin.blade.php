@@ -2,27 +2,27 @@
 
 <li class="{{ request()->is('admin/dashboard') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('admin.dashboard') }}">
-        <i class="far fa-square"></i>
+        <i class="fas fa-th-large"></i>
         <span>Dashboard</span>
     </a>
 </li>
 <li class="{{ request()->is('admin/guru') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('admin.guru') }}">
-        <i class="far fa-square"></i>
+        <i class="fas fa-chalkboard-teacher"></i>
         <span>Guru</span>
     </a>
 </li>
 
 <li class="{{ request()->is('admin/siswa') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('admin.siswa') }}">
-        <i class="far fa-square"></i>
+        <i class="fas fa-user"></i>
         <span>Siswa</span>
     </a>
 </li>
 
 <li class="{{ request()->is('admin/mapel') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('admin.mapel') }}">
-        <i class="far fa-square"></i>
+        <i class="fas fa-book"></i>
         <span>Mapel</span>
     </a>
 </li>

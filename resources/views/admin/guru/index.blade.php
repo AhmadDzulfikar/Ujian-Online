@@ -12,10 +12,26 @@
         <div class="section-body">
 
             <div class="card">
-                <div class="card-header">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#tambah">
-                        <i class="fas fa-plus"></i>
-                    </button>
+                <div class="card-header">                    
+                        <div class="col-12 col-md-8">
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#tambah">
+                                <i class="fas fa-plus"></i> Tambah Guru
+                            </button>
+                        </div>
+                        <div class="col-12 col-md-4 d-flex justify-content-end">
+                            <div class="row d-flex justify-content-between">
+                                <div class="col-12 col-md-6 pr-0">
+                                    <button class="btn btn-success">
+                                        <i class="fas fa-file-excel"></i> Export Excel
+                                    </button>
+                                </div>
+                                <div class="col-12 col-md-6 pr-0">
+                                    <button class="btn btn-danger">
+                                        <i class="fas fa-file-pdf"></i> Export Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -23,7 +39,7 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">
-                                        id
+                                        No.
                                     </th>
                                     <th>Nama</th>
                                     <th>NIP</th>
@@ -34,7 +50,7 @@
                             <tbody>
                                 @foreach ($gurus as $guru)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                        <td class="text-center">{{ $loop->iteration }}</td>
                                         <td>{{ $guru->fullname }}</td>
                                         <td>{{ $guru->nip }}</td>
                                         <td>{{ $guru->email }}</td>

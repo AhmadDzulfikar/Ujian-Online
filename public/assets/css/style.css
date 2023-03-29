@@ -1998,11 +1998,11 @@ a.bb {
   content: '/'; }
 
 .login-brand {
-  margin: 20px 0;
-  margin-bottom: 40px;
-  font-size: 24px;
+  margin: 7px 0;
+  margin-bottom: 30px;
+  font-size: 10px;
   text-transform: uppercase;
-  letter-spacing: 4px;
+  letter-spacing: 0px;
   color: #666;
   text-align: center; }
 
@@ -2687,7 +2687,9 @@ body.layout-3 .main-footer {
   padding-right: 30px;
   padding-top: 80px;
   width: 100%;
-  position: relative; }
+  position: relative;
+  /* height: 300px; */
+ }
 
 .main-footer {
   padding: 20px 30px 20px 280px;

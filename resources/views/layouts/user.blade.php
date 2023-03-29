@@ -6,7 +6,8 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Layout &rsaquo; Top Navigation &mdash; Stisla</title>
+    <title>Ujian Online</title>
+    <link rel="icon" type="image/x-icon" href="/assets/img/logo10.ico">
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="/assets/modules/bootstrap/css/bootstrap.min.css">
@@ -33,7 +34,7 @@
 </head>
 
 <body class="layout-3">
-    <div id="app">
+    <div id="app" class="background-image">
         <div class="main-wrapper container">
             <div class="navbar-bg"></div>
             <nav class="navbar navbar-expand-lg main-navbar">
@@ -54,6 +55,18 @@
                                 [{{ Auth::guard('siswa')->user()->username }}]</div>
                             <img alt="image" src="/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
                         </a>
+
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
                     </li>
                 </ul>
             </nav>
@@ -63,7 +76,7 @@
             </nav>
 
             <!-- Main Content -->
-            <div class="main-content">
+            <div class="main-content ">
                 @yield('content')
             </div>
             <footer class="main-footer">
