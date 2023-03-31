@@ -20,7 +20,8 @@ class UjianController extends Controller
     {
         $mapels = Mapel::get();
         $ujians = Ujian::get();
-        return view('siswa.ujian.konfirmasi', compact('mapels', 'ujians'));
+        $token = Token::first();
+        return view('siswa.ujian.konfirmasi', compact('mapels', 'ujians', 'token'));
     }
 
     public function submit_token(Request $request)
@@ -28,6 +29,11 @@ class UjianController extends Controller
         $ujian = Ujian::where('id', $request->ujian_id)->first();
         $token = Token::where('token', $request->token)->first();
 
+        // kondisi kalo tokennya AUTO
+        if ($request->token == 'AUTO' && Token::where('status', 'enabled')) {
+            $enkripsi = base64_encode($ujian->nama) . '|' . base64_encode($ujian->created_at);
+            return redirect("siswa/soal-ujian/$ujian->nama/$enkripsi");
+        }
         // kondisi kalo token salah
         if (!$token) {
             return redirect()->back()
@@ -92,15 +98,18 @@ class UjianController extends Controller
 
     public function submit_radio_button(Request $request)
     {
-        $cek_jawaban = JawabanSiswa::where('soal_id', $request->soal_id)
+        $cek_jawaban = JawabanSiswa::where('siswa_id', $request->siswa_id)
+            ->where('soal_id', $request->soal_id)
             ->whereHas('soal', function ($q) use ($request) {
                 $q->where('ujian_id', $request->ujian_id);
             })
             ->first();
         if ($cek_jawaban) {
-            $update_jawaban = JawabanSiswa::where('soal_id', $request->soal_id)->update([
-                'jawaban' => $request->answer
-            ]);
+            $update_jawaban = JawabanSiswa::where('soal_id', $request->soal_id)
+                ->where('siswa_id', $request->siswa_id)
+                ->update([
+                    'jawaban' => $request->answer
+                ]);
         } else {
             $submit = JawabanSiswa::create([
                 'siswa_id' => $request->siswa_id,

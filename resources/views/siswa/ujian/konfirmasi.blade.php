@@ -64,11 +64,10 @@
                 <div class="d-flex align-items-center" style="gap: 5%">
                     <div class="form-group">
                         <p class="text-primary mb-0 heading-info">Token Ujian</p>
-                        <input type="text" style="width: 16rem" value="" name="token" class="form-control">
+                        <input type="text" id="token" style="width: 16rem"
+                            value="{{ $token->status == 'disabled' ? '' : 'AUTO' }}" name="token" class="form-control"
+                            disabled>
                     </div>
-                    {{-- <div class="form-group"><button type="submit"
-                            onclick="$.cardProgress('#sample-login', {dismiss: true,onDismiss: function() {alert('Dismissed :)')}});return false;"
-                            class="btn btn-primary">Mulai</button></div> --}}
                     <div class="form-group"><button type="submit"class="btn btn-primary">Mulai</button></div>
 
                 </div>
@@ -81,10 +80,9 @@
             let ujian = document.getElementById('ujian')
             let tanggal = document.getElementById('tanggal')
             let waktuMulai = document.getElementById('waktu_mulai')
+            let token = document.getElementById('token')
 
             fetch('/api/get-ujian?mapel_id=' + mapel.value).then(res => res.json()).then(datas => {
-                // console.log(datas)
-                // dataUjian = datas
                 ujian.innerHTML = ''
                 ujian.innerHTML += `<option value="" selected disabled>-- Pilih Ujian --</option>`
 
@@ -103,6 +101,7 @@
                             tanggal.value = data.tanggal
                             waktuMulai.value = data.waktu_mulai
                             alokasi.value = data.alokasi_waktu
+                            token.removeAttribute('disabled')
                         }
                     })
                 })

@@ -168,6 +168,7 @@ class FirstSeeder extends Seeder
         //TOKEN
         Token::Create([
             'token' => 'FWGGSH',
+            'status' => 'disabled',
             'expired_date' => Carbon::now()->addMinutes(10),
         ]);
 

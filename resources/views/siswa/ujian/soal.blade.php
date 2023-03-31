@@ -1,45 +1,72 @@
 @extends('layouts.user')
 
 @section('content')
-    <p class="btn btn-outline-success" id="countdown"></p>
-    <form action="" id="myForm">
-        <input type="hidden" id="siswa_id" value="{{ Auth::guard('siswa')->user()->id }}">
-        <input type="hidden" id="ujian_id" value="{{ $get_ujian->id }}">
-        @foreach ($soals as $soal)
-            <div id="{{ $soal->id }}" class="form-group">
-                <label class="d-block">
-                    <p>{{ $loop->iteration }} . {{ $soal->text }}</p>
-                </label>
-                @if ($soal->tipe == 'pg')
-                    @foreach ($soal->opsis as $opsi)
-                        <div class="form-check">
-                            {{-- <input class="form-check-input"
-                                onclick="saveAnswer('{{ $soal->id }}' ,'{{ $opsi->opsi }}')" type="radio"
-                                value="{{ $opsi->opsi }}" name="answer[{{ $soal->id }}][]"
-                                id="radio-{{ $opsi->id }}"> --}}
-                            <input class="form-check-input"
-                                onclick="saveAnswerRadioButton('{{ $soal->id }}' ,'{{ $opsi->opsi }}')" type="radio"
-                                value="{{ $opsi->opsi }}" name="answer[{{ $soal->id }}][]"
-                                id="radio-{{ $opsi->id }}"
-                                {{ $opsi->opsi == $soal->jawaban_siswas->jawaban && Auth::guard('siswa')->user()->id == $soal->jawaban_siswas->siswa_id ? 'checked' : '' }}>
-                            <label class="form-check-label">
-                                {{ $opsi->opsi }}
-                            </label>
+    <div class="card">
+
+        <div class="card-header">
+            <div class="justify-content-end">
+                <p class="btn btn-outline-success" id="countdown"></p>
+                <p class="btn btn-primary" data-toggle="modal" data-target="#nomor-soal"><i class="fas fa-th-large"></i> Nomor
+                    Soal</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <form action="" id="myForm">
+                <input type="hidden" id="siswa_id" value="{{ Auth::guard('siswa')->user()->id }}">
+                <input type="hidden" id="ujian_id" value="{{ $get_ujian->id }}">
+                @foreach ($soals as $soal)
+                    <div id="{{ $soal->id }}" class="form-group">
+                        <label class="d-block">
+                            <p>{{ $loop->iteration }} . {{ $soal->text }}</p>
+                        </label>
+                        @if ($soal->tipe == 'pg')
+                            @foreach ($soal->opsis as $opsi)
+                                <div class="form-check">
+                                    <input class="form-check-input"
+                                        onclick="saveAnswerRadioButton('{{ $soal->id }}' ,'{{ $opsi->opsi }}')"
+                                        type="radio" value="{{ $opsi->opsi }}" name="answer[{{ $soal->id }}][]"
+                                        id="radio-{{ $opsi->id }}"
+                                        {{ $opsi->opsi == isset($soal->jawaban_siswas->jawaban) && Auth::guard('siswa')->user()->id == isset($soal->jawaban_siswas->siswa_id) ? 'checked' : '' }}>
+                                    <label class="form-check-label">
+                                        {{ $opsi->opsi }}
+                                    </label>
+                                </div>
+                            @endforeach
+                        @endif
+                        @if ($soal->tipe == 'isian_singkat')
+                            <input type="text" class="form-control" onkeyup="jawaban_isian_singkat({{ $soal->id }})"
+                                id="isian_singkat" name="answer[{{ $soal->id }}][]">
+                        @endif
+
+                        @if ($soal->tipe == 'uraian')
+                            <textarea cols="30" rows="20" id="uraian" onkeyup="uraians({{ $soal->id }})"
+                                name="answer[{{ $soal->id }}][]" class="form-control"></textarea>
+                        @endif
+                    </div>
+                @endforeach
+            </form>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="nomor-soal">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Nomor Soal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @foreach ($soals as $nomor_soal)
+                        <div class="p-2 mr-2" style="border: 1px solid; cursor: pointer;">
+                            {{ $loop->iteration }}
                         </div>
                     @endforeach
-                @endif
-                @if ($soal->tipe == 'isian_singkat')
-                    <input type="text" class="form-control" onkeyup="jawaban_isian_singkat({{ $soal->id }})"
-                        id="isian_singkat" name="answer[{{ $soal->id }}][]">
-                @endif
-
-                @if ($soal->tipe == 'uraian')
-                    <textarea cols="30" rows="20" id="uraian" onkeyup="uraians({{ $soal->id }})"
-                        name="answer[{{ $soal->id }}][]" class="form-control"></textarea>
-                @endif
+                </div>
             </div>
-        @endforeach
-    </form>
+        </div>
+    </div>
+
 
     <script>
         // Inisialisasi variabel untuk jawaban dan waktu countdown

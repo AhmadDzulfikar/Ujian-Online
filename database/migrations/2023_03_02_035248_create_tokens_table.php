@@ -16,6 +16,7 @@ class CreateTokensTable extends Migration
         Schema::create('tokens', function (Blueprint $table) {
             $table->id();
             $table->string('token', 20);
+            $table->string('status');
             $table->timestamp('expired_date');
             $table->timestamps();
         });
