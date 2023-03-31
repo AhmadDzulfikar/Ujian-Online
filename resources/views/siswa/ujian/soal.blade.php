@@ -13,10 +13,15 @@
                 @if ($soal->tipe == 'pg')
                     @foreach ($soal->opsis as $opsi)
                         <div class="form-check">
-                            <input class="form-check-input"
+                            {{-- <input class="form-check-input"
                                 onclick="saveAnswer('{{ $soal->id }}' ,'{{ $opsi->opsi }}')" type="radio"
                                 value="{{ $opsi->opsi }}" name="answer[{{ $soal->id }}][]"
-                                id="radio-{{ $opsi->id }}">
+                                id="radio-{{ $opsi->id }}"> --}}
+                            <input class="form-check-input"
+                                onclick="saveAnswerRadioButton('{{ $soal->id }}' ,'{{ $opsi->opsi }}')" type="radio"
+                                value="{{ $opsi->opsi }}" name="answer[{{ $soal->id }}][]"
+                                id="radio-{{ $opsi->id }}"
+                                {{ $opsi->opsi == $soal->jawaban_siswas->jawaban && Auth::guard('siswa')->user()->id == $soal->jawaban_siswas->siswa_id ? 'checked' : '' }}>
                             <label class="form-check-label">
                                 {{ $opsi->opsi }}
                             </label>
@@ -82,6 +87,28 @@
             answers[questionId] = answer;
             console.log(questionId, answer)
             localStorage.setItem("answers", JSON.stringify(answers)); // simpan jawaban ke localStorage
+        }
+
+        function saveAnswerRadioButton(questionId, answer) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('siswa.submit-radio-button') }}",
+                data: {
+                    ujian_id: ujian,
+                    siswa_id: siswa,
+                    soal_id: questionId,
+                    answer: answer
+                },
+                success: function(data) {
+                    console.log(data)
+                }
+            });
         }
 
         // Fungsi untuk mengambil jawaban dari localStorage dan mengisi ulang form jawaban pada halaman web

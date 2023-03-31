@@ -79,19 +79,19 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
 });
 
 Route::middleware(['auth:proktor'])->prefix('proktor')->group(function () {
-    Route::get('/dashboard',[DashboardController::class, 'index'])->name('proktor.dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('proktor.dashboard');
     Route::controller(GenerateTokenController::class)
-    ->prefix('generate-token')
-    ->group(function() {
-            Route::get('/','index')->name('proktor.generate-token');
+        ->prefix('generate-token')
+        ->group(function () {
+            Route::get('/', 'index')->name('proktor.generate-token');
             Route::post('/store', 'store')->name('proktor.generate-token-ujian');
-    });
+        });
 
     Route::controller(StatusPesertaController::class)
-    ->prefix('status-peserta')
-    ->group(function() {
-            Route::get('/' , 'index')->name('proktor.status-peserta');
-    });
+        ->prefix('status-peserta')
+        ->group(function () {
+            Route::get('/', 'index')->name('proktor.status-peserta');
+        });
 });
 
 Route::middleware(['auth:guru'])->group(function () {
@@ -107,6 +107,7 @@ Route::middleware(['auth:siswa'])->prefix('siswa')->group(function () {
             Route::get('/soal-ujian/{ujian}/{enkripsi}', 'soal_ujian')->name('siswa.soal-ujian');
             Route::post('/submit-token', 'submit_token')->name('siswa.submit-token');
             Route::post('/submit-ujian', 'submit_ujian')->name('siswa.submit-ujian');
+            Route::post('/submit-radio-button', 'submit_radio_button')->name('siswa.submit-radio-button');
             Route::get('/logout-ujian', 'logout_ujian')->name('siswa.logout-ujian');
         });
 });

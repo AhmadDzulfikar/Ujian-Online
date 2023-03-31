@@ -50,7 +50,21 @@
                         <a class="nav-link dropdown-toggle nav-link-user" href="#" id="navbarDropdown"
                             role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img alt="image" src="/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-                            <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div>
+                            {{-- <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div> --}}
+                            @if (Auth::guard('admin')->check())
+                                <div class="d-sm-none d-lg-inline-block">{{ Auth::guard('admin')->user()->username }}
+                                </div>
+                            @endif
+
+                            @if (Auth::guard('guru')->check())
+                                <div class="d-sm-none d-lg-inline-block">{{ Auth::guard('guru')->user()->username }}
+                                </div>
+                            @endif
+
+                            @if (Auth::guard('proktor')->check())
+                                <div class="d-sm-none d-lg-inline-block">{{ Auth::guard('proktor')->user()->username }}
+                                </div>
+                            @endif
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}"

@@ -68,7 +68,7 @@ class UjianController extends Controller
 
         $get_ujian = Ujian::where('nama', $ujian)->first();
         if ($ujian == $nama_ujian && $created_at == $get_ujian->created_at) {
-            $soals = Soal::where('ujian_id', $get_ujian->id)->inRandomOrder()->get();
+            $soals = Soal::with('jawaban_siswas')->where('ujian_id', $get_ujian->id)->inRandomOrder()->get();
             return view('siswa.ujian.soal', compact('soals', 'get_ujian'));
         } else {
             return redirect('siswa/konfirmasi-ujian');
@@ -87,6 +87,26 @@ class UjianController extends Controller
                     'jawaban' => $jawaban
                 ]);
             }
+        }
+    }
+
+    public function submit_radio_button(Request $request)
+    {
+        $cek_jawaban = JawabanSiswa::where('soal_id', $request->soal_id)
+            ->whereHas('soal', function ($q) use ($request) {
+                $q->where('ujian_id', $request->ujian_id);
+            })
+            ->first();
+        if ($cek_jawaban) {
+            $update_jawaban = JawabanSiswa::where('soal_id', $request->soal_id)->update([
+                'jawaban' => $request->answer
+            ]);
+        } else {
+            $submit = JawabanSiswa::create([
+                'siswa_id' => $request->siswa_id,
+                'soal_id' => $request->soal_id,
+                'jawaban' => $request->answer
+            ]);
         }
     }
 
