@@ -72,10 +72,20 @@ class UjianController extends Controller
         $nama_ujian = base64_decode($split[0]);
         $created_at = base64_decode($split[1]);
 
-        $get_ujian = Ujian::where('nama', $ujian)->first();
+        $get_ujian = Ujian::with('soals')->where('nama', $ujian)->first();
+        $jumlah_soal = Soal::where('ujian_id', $get_ujian->id)->count();
         if ($ujian == $nama_ujian && $created_at == $get_ujian->created_at) {
             $soals = Soal::with('jawaban_siswas')->where('ujian_id', $get_ujian->id)->inRandomOrder()->get();
-            return view('siswa.ujian.soal', compact('soals', 'get_ujian'));
+            foreach ($soals as $key => $value) {
+                $value->checked = JawabanSiswa::where('soal_id', $value->id)->where('siswa_id', Auth::guard('siswa')->user()->id)->first();
+
+                if ($value->checked == null) {
+                    $value->checked = (object)[
+                        'jawaban' => null
+                    ];
+                }
+            }
+            return view('siswa.ujian.soal-baru', compact('soals', 'get_ujian', 'jumlah_soal'));
         } else {
             return redirect('siswa/konfirmasi-ujian');
         }

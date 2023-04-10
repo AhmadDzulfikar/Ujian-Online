@@ -175,7 +175,13 @@ class FirstSeeder extends Seeder
         //SOAL
         Soal::Create([
             'ujian_id' => 1,
-            'text' => 'FWGGSH',
+            'text' => 'SOAL PERTAMA',
+            'tipe' => 'pg',
+            'poin' => 2
+        ]);
+        Soal::Create([
+            'ujian_id' => 1,
+            'text' => 'SOAL KEDUA',
             'tipe' => 'pg',
             'poin' => 2
         ]);
@@ -221,6 +227,38 @@ class FirstSeeder extends Seeder
         Opsi::Create([
             'opsi' => 'Opsi 5',
             'soal_id' => 1,
+            'is_correct' => 'wrong',
+            'urutan' => 5
+        ]);
+
+
+        Opsi::Create([
+            'opsi' => 'Opsi 1',
+            'soal_id' => 2,
+            'is_correct' => 'correct',
+            'urutan' => 1
+        ]);
+        Opsi::Create([
+            'opsi' => 'Opsi 2',
+            'soal_id' => 2,
+            'is_correct' => 'wrong',
+            'urutan' => 2
+        ]);
+        Opsi::Create([
+            'opsi' => 'Opsi 3',
+            'soal_id' => 2,
+            'is_correct' => 'wrong',
+            'urutan' => 3
+        ]);
+        Opsi::Create([
+            'opsi' => 'Opsi 4',
+            'soal_id' => 2,
+            'is_correct' => 'wrong',
+            'urutan' => 4
+        ]);
+        Opsi::Create([
+            'opsi' => 'Opsi 5',
+            'soal_id' => 2,
             'is_correct' => 'wrong',
             'urutan' => 5
         ]);

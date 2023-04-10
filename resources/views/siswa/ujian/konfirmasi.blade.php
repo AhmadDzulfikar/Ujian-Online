@@ -66,7 +66,7 @@
                         <p class="text-primary mb-0 heading-info">Token Ujian</p>
                         <input type="text" id="token" style="width: 16rem"
                             value="{{ $token->status == 'disabled' ? '' : 'AUTO' }}" name="token" class="form-control"
-                            disabled>
+                            disabled required>
                     </div>
                     <div class="form-group"><button type="submit"class="btn btn-primary">Mulai</button></div>
 
